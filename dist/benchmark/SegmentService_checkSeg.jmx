@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.1.1 r1855137">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Segment Service" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="SingleUser" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">1</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <RecordingController guiclass="RecordController" testclass="RecordingController" testname="Recording Controller" enabled="true"/>
+        <hashTree>
+          <vn.zalopay.benchmark.testbean.GrpcRequest guiclass="TestBeanGUI" testclass="vn.zalopay.benchmark.testbean.GrpcRequest" testname="gRPC_SegmentServices/checkSeg" enabled="true">
+            <stringProp name="HOST_PORT">localhost:8005</stringProp>
+            <stringProp name="FULL_METHOD">data_services_seg.SegmentServices/checkSeg</stringProp>
+            <stringProp name="PROTO_FOLDER">src/main/resources/protos</stringProp>
+            <stringProp name="REQUEST_FILE"></stringProp>
+            <longProp name="DEADLINE">10000</longProp>
+            <stringProp name="REQUEST_JSON">{
+  &quot;id&quot;: &quot;900006951&quot;,
+  &quot;segment&quot;: 2,
+  &quot;mac&quot;: &quot;725c09147d0781cd7c9b228ab63&quot;,
+  &quot;client&quot;: 1,
+  &quot;reqdate&quot;: ${__time()}
+}</stringProp>
+            <boolProp name="TLS">false</boolProp>
+          </vn.zalopay.benchmark.testbean.GrpcRequest>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
